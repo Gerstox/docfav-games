@@ -1,0 +1,57 @@
+<section class="game-filter">
+  <h4 class="mt-5" style="color: #4d4d4d">Lista de juegos</h4>
+  <div class="border p-2 rounded">
+    <h5 class="mt-2 text-center" style="color: #4d4d4d">Filtros</h5>
+    <div class="row input-group m-0">
+      <div class="col-xs-12 col-md-4 p-2">
+        <input
+          #inputName
+          class="form-control w-100"
+          name="name"
+          type="search"
+          (keyup)="onKeyUpName(inputName.value)"
+          placeholder="Buscar por nombre..."
+        />
+      </div>
+      <div class="col-xs-12 col-md-4 p-2">
+        <select
+          #selectPlatforms
+          (change)="selectParam(selectPlatforms.value, 'platform')"
+          class="form-control w-100"
+          style="color: #4d4d4d;"
+          aria-label="Default select example"
+        >
+          <option value="" selected>Seleccionar plataforma</option>
+          <option *ngFor="let platform of platforms" [value]="platform">
+            {{ platform | titlecase }}
+          </option>
+        </select>
+      </div>
+      <!-- <select
+        #selectCategories
+        (change)="selectParam(selectCategories.value, 'category')"
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option value="" selected>Seleccionar género</option>
+        <option *ngFor="let category of categories" [value]="category">
+          {{ category | titlecase }}
+        </option>
+      </select> -->
+      <div class="col-xs-12 col-md-4 p-2">
+        <input
+          type="text"
+          (change)="onSelectCategory($event)"
+          class="form-control w-100"
+          list="categoriesDatalist"
+          id="categoryDataList"
+          placeholder="Seleccionar categoría..."
+        />
+        <datalist id="categoriesDatalist">
+          <option *ngFor="let category of categories" [value]="category">
+          </option>
+        </datalist>
+      </div>
+    </div>
+  </div>
+</section>

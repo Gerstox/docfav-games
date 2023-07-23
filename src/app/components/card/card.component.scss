@@ -1,0 +1,32 @@
+.card {
+  // height: 375px;
+  .card-text {
+    display: -webkit-box;
+    max-width: 400px;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  // .card-body {
+  //   position: relative;
+  //   .btn-down {
+  //     position: absolute;
+  //     bottom: 20px;
+  //   }
+  // }
+}
+
+// Tablets
+@media screen and (min-width: 576px) {
+  .card {
+    height: 375px;
+    .card-body {
+      position: relative;
+      .btn-down {
+        position: absolute;
+        bottom: 15px;
+      }
+    }
+  }
+}
