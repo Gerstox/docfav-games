@@ -1,0 +1,10 @@
+<div class="card">
+  <app-image [src]="game.thumbnail" [alt]="game.short_description"></app-image>
+  <div class="card-body">
+    <h5 class="card-title">{{ game.title }}</h5>
+    <p class="card-text" [title]="game.short_description">{{ game.short_description }}</p>
+    <!-- <a href="#" class="btn btn-primary btn-down">Go somewhere</a> -->
+    <p>{{ game.genre }}</p>
+    <p>{{ game.platform }}</p>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<img class="card-img-top" (error)="imgError()" [src]="src" [alt]="alt" *ngIf="src; else elseImg">
+<ng-template #elseImg>
+  <img [src]="srcDefault" [alt]="alt">
+</ng-template>

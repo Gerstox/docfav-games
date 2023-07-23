@@ -1,0 +1,13 @@
+<div class="container">
+  <button (click)="getByPlatform()">Por plataforma</button>
+  <button (click)="getByGenre()">Por género</button>
+  <div class="row">
+    <app-card
+      class="col-xs-12 col-sm-6 col-md-4 col-lg-3 p-2"
+      [game]="game"
+      *ngFor="let game of games">
+    </app-card>
+  </div>
+
+</div>
+
