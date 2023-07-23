@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from '../../interfaces/game.interface';
 
 import { GamesService } from '../../services/games.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-card-list',
@@ -12,30 +13,33 @@ import { GamesService } from '../../services/games.service';
 export class CardListComponent implements OnInit {
 
   games: Game[] = [];
+  gameName = '';
+
+  selectedCategory = '';
+  selectedPlatform = '';
+  selectedName = '';
 
   constructor(
     private gamesService: GamesService
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     this.gamesService.getAllGames()
     .subscribe(data => {
       this.games = data;
     })
   }
 
-  getByPlatform() {
-    this.gamesService.getGamesByPlatform('pc')
+  ngOnInit(): void {
+    this.gamesService.gamesFiltered$
     .subscribe(data => {
       this.games = data;
-    })
+      this.getByName(this.gameName);
+    });
   }
 
-  getByGenre() {
-    this.gamesService.getGamesByGenre('shooter')
-    .subscribe(data => {
-      this.games = data;
-    })
+  getByName(name: string) {
+    this.gameName = name;
+    if (name === '' || name.length < 3) return;
+    this.games = this.games.filter(game => game.title.toLowerCase().indexOf(name.toLowerCase()) > -1);
   }
 
 }

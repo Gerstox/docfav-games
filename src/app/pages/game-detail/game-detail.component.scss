@@ -8,3 +8,23 @@
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(to right, rgb(110, 187, 222), rgb(196, 209, 231))
   }
+.game-detail {
+  color: #4d4d4d;
+}
+.img-thumbnail {
+  width: 95%;
+  z-index: 1
+}
+.card-container {
+  background-color: #4d4d4d;
+  height: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .img-thumbnail {
+    width: 300px;
+  }
+  .card-container {
+    height: 240px;
+  }
+}

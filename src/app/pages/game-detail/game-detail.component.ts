@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { Location } from '@angular/common'
 
 import { GamesService } from '../../services/games.service';
 import { Game } from '../../interfaces/game.interface';
@@ -17,19 +19,29 @@ export class GameDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private gameService: GamesService
+    private gameService: GamesService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params =>{
-      this.gameId = params.get('id');
-      if (this.gameId) {
-        this.gameService.getGameById(this.gameId)
-        .subscribe(data => {
-          this.game = data;
-        });
-      }
+    this.route.paramMap
+    .pipe(
+      switchMap(params => {
+        this.gameId = params.get('id');
+        if (this.gameId) {
+          return this.gameService.getGameById(this.gameId)
+        }
+        return '';
+        }
+      )
+    )
+    .subscribe((data) => {
+      this.game = data;
     });
+  }
+
+  back(): void {
+    this.location.back()
   }
 
 }
